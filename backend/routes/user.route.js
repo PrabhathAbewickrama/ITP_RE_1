@@ -1,3 +1,5 @@
+/*
+
 import express from 'express';
 import { test } from '../controllers/user.controller.js'
 
@@ -7,3 +9,4 @@ router.get('/', test);
 
 
 export default router;
+*/

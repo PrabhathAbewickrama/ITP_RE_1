@@ -1,52 +1,11 @@
-
-
 import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-dotenv.config();
-import {Record } from './models/RecordModel.js';
-import recordRoute from './routes/recordRoute.js';
-import cors from 'cors';
+import {Record }from '../models/RecordModel.js';
 
-//middlewere handling polycy
-//option1 allow all origin with deflt of cors
-app.use(cors());
+const router = express.Router();
 
-//option2 allow only custom origin
-app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-}));
+// save a new record
 
-mongoose
-.connect(process.env.MONGO)
-.then(() => {
-    console.log('Connected to MongoDB');
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-
-
-const app = express();
-
-//middleware
-app.use(express.json());
-
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-    }
-)
-
-app.use('/record', recordRoute);
-
-//
-// app.use("/backend/user", userRoutes);
-
-
-
-app.post('/record', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         if(
             !req.body.ID ||
@@ -79,7 +38,7 @@ return res.status(201).send(record);
 
 
 // Route for getting all record
-app.get('/record', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const record = await Record.find();
         return res.status(200).json({
@@ -95,7 +54,7 @@ app.get('/record', async (req, res) => {
 
 
 // Route for getting a record by ID
-app.get('/record/:ID', async (req, res) => {
+router.get('/:ID', async (req, res) => {
     try {
 
         const { ID } = req.params;
@@ -111,7 +70,7 @@ app.get('/record/:ID', async (req, res) => {
 }   ); 
 
 // Route for updating a record 
-app.put('/record/:ID', async (req, res) => {
+router.put('/:ID', async (req, res) => {
     try {
         if(
             !req.body.ID ||
@@ -139,7 +98,7 @@ app.put('/record/:ID', async (req, res) => {
     }
 
     // Route for deleting a record
-app.delete('/record/:ID', async (req, res) => {
+router.delete('/:ID', async (req, res) => {
     try {
         const { ID } = req.params;
         const record = await Record.findByIdAndDelete(ID);
@@ -156,3 +115,5 @@ catch(error) {
 }});
 }
   );
+
+  export default router;
