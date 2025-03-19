@@ -1,3 +1,4 @@
+
 import React from 'react'
 import {FaSearch} from 'react-icons/fa'; 
 import { Link } from 'react-router-dom';
@@ -27,18 +28,18 @@ export default function Header() {
             <li className='hidden sm:inline text-slate-700 hover:underline'>
                 About
                 </li>
-            </Link>    
+            </Link>   
+
+
+            <Link to='/PetRecord'>   
+            <li className='hidden sm:inline text-slate-700 hover:underline'>
+                Add Report
+                </li>
+            </Link>   
+
+
         </ul>
         </div>
     </header>
   );
 }
-
-/*import React from 'react'
-
-export default function Header() {
-  return (
-    <div>Header</div>
-  )
-}
-*/
