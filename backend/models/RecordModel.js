@@ -6,7 +6,7 @@ const RecordSchema = new mongoose.Schema( {
         required: true,
     },
     VetName: {
-        type: Number,
+        type: String,
         required: true,
     },
     Treatment: {
@@ -14,7 +14,7 @@ const RecordSchema = new mongoose.Schema( {
         required: true,
     },
     date: {
-        type: Date,
+        type: String,
         required: true,
     },
  });

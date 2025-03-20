@@ -1,3 +1,5 @@
+/*
+
 import React from 'react'
 
 export default function about() {
@@ -5,3 +7,5 @@ export default function about() {
     <div>about</div>
   )
 }
+
+*/

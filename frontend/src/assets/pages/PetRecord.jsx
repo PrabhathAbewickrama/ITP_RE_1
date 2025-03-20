@@ -1,3 +1,5 @@
+/*
+
 import React from 'react'
 
 export default function PetRecord() {
@@ -182,3 +184,5 @@ export default function PetRecord() {
     </main>
   )
 }
+
+*/
