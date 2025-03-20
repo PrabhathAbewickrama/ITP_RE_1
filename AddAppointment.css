@@ -1,0 +1,114 @@
+/* Wrapper for whole appointment section */
+.appointment-wrapper {
+  text-align: center;
+  padding-top: 20px;
+}
+
+/* Interactive Message */
+.interactive-message {
+  text-align: center;
+  margin-top: 5px;
+  padding: 5px;
+  background: #f6f1f1;
+  color: rgb(27, 26, 25);
+  border-radius: 10px;
+  width: 1480px;
+  font-size: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.interactive-message h3 {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+/* Container for image and form - aligned properly */
+.appointment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0; /* No space between cards */
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Image Card - Same size as form card */
+.image-card {
+  flex: 1;
+  background: white;
+  padding: 0;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure image fills the card */
+.image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Form Card */
+.form-card {
+  flex: 1;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Heading */
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form Styling */
+.form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Input Fields */
+.form-card input,
+.form-card select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Submit Button */
+.form-card button {
+  background-color: #ff7043;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-card button:hover {
+  background-color: #e64a19;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .appointment-container {
+      flex-direction: column;
+  }
+
+  .image-card,
+  .form-card {
+      width: 100%;
+  }
+}
