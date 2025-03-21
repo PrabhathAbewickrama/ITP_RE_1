@@ -61,7 +61,7 @@ const THome = () => {
                     {record.Treatment}
                     </td>
                   <td className='border border-slate-700 rounded-md text-center'>
-                    {record.date}
+                    {new Date(record.date).toLocaleDateString()}
                     </td>
                   <td className='border border-slate-700 rounded-md text-center'>
                     <div className='flex justify-center gap-x-4'>

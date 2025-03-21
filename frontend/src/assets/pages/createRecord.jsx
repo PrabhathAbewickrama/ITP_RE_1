@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
-const CreateRecord = () => {
+  const CreateRecord = () => {
   const [ID, setID] = useState('');
   const [VetName, setVetName] = useState('');
   const [Treatment, setTreatment] = useState('');
@@ -73,7 +73,7 @@ const CreateRecord = () => {
         <div className='my-4'>
           <label className='text-xl mr-4 text-gray-500'>date</label>
           <input
-            type='text'
+            type='date'
             onChange={(e) => setdate(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
           />

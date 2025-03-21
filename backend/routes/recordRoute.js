@@ -1,7 +1,7 @@
 
 
 import express, { response } from 'express';
-import {Record }from '../models/RecordModel.js';
+import { Record } from '../models/RecordModel.js';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
-        if(
+        if (
             !req.body.ID ||
             !req.body.VetName ||
             !req.body.Treatment ||
@@ -17,22 +17,22 @@ router.post('/', async (req, res) => {
         ) {
             return res.status(400).send({ message: 'All fields are required' });
         }
-    
-  
 
-const newRecord = {
-    ID: req.body.ID,
-    VetName: req.body.VetName,
-    Treatment: req.body.Treatment,
-    date: req.body.date,    
-};
 
-const record = await Record.create(newRecord);
-return res.status(201).send(record);
-} catch (error){
-    console.log(error.message);
-    response.status(500).send({ message: error.message});
-}
+
+        const newRecord = {
+            ID: req.body.ID,
+            VetName: req.body.VetName,
+            Treatment: req.body.Treatment,
+            date: req.body.date,
+        };
+
+        const record = await Record.create(newRecord);
+        return res.status(201).send(record);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
 
 
 });
@@ -47,11 +47,11 @@ router.get('/', async (req, res) => {
             data: record,
         });
     }
-    catch(error) {
+    catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message });
     }
-}   ); 
+});
 
 
 // Route for getting a record by ID
@@ -63,60 +63,60 @@ router.get('/:ID', async (req, res) => {
         return res.status(200).json(record);
 
 
-        }
-    catch(error) {
+    }
+    catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message });
     }
-}   ); 
+});
 
 // Route for updating a record 
 router.put('/:ID', async (req, res) => {
     try {
-        if(
+        if (
             !req.body.ID ||
             !req.body.VetName ||
             !req.body.Treatment ||
             !req.body.date
         ) {
             return res.status(400).send({ message: 'All fields are required' });
-        }   
-    
-    const { ID } = req.params;
+        }
 
-    const record = await Record.findByIdAndUpdate(ID, req.body);
+        const { ID } = req.params;
 
-    if(!record) {
-        return res.status(404).json({ message: 'Record not found' });
+        const record = await Record.findByIdAndUpdate(ID, req.body);
+
+        if (!record) {
+            return res.status(404).json({ message: 'Record not found' });
+        }
+        return res.status(200).json(record);
     }
-    return res.status(200).json(record);
-    }
 
 
-    catch(error) {
+    catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message });
     }
 
     // Route for deleting a record
-router.delete('/:ID', async (req, res) => {
-    try {
-        const { ID } = req.params;
-        const record = await Record.findByIdAndDelete(ID);
+    router.delete('/:ID', async (req, res) => {
+        try {
+            const { ID } = req.params;
+            const record = await Record.findByIdAndDelete(ID);
 
-        if(!record) {
-            return res.status(404).json({ message: 'Record not found' });
+            if (!record) {
+                return res.status(404).json({ message: 'Record not found' });
+            }
+            return res.status(200).json({ message: 'Record deleted successfully' });
+
         }
-        return res.status(200).json({ message: 'Record deleted successfully' });
-    
+        catch (error) {
+            console.log(error.message);
+            res.status(500).send({ message: error.message });
+        }
+    });
 }
-catch(error) {
-    console.log(error.message);
-    res.status(500).send({ message: error.message });
-}});
-}
-  );
+);
 
-  export default router;
+export default router;
 
-  
