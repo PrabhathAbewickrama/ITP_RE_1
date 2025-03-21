@@ -1,6 +1,6 @@
 import React from 'react'
 
-function deleteRecords() {
+const deleteRecords = () => {
   return (
     <div>deleteRecords</div>
   )

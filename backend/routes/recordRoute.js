@@ -1,6 +1,6 @@
 
 
-import express from 'express';
+import express, { response } from 'express';
 import {Record }from '../models/RecordModel.js';
 
 const router = express.Router();
@@ -17,11 +17,7 @@ router.post('/', async (req, res) => {
         ) {
             return res.status(400).send({ message: 'All fields are required' });
         }
-    }
-        catch(error) {
-            console.log(error.message);
-            res.status(500).send({ message: error.message });
-        }
+    
   
 
 const newRecord = {
@@ -33,10 +29,13 @@ const newRecord = {
 
 const record = await Record.create(newRecord);
 return res.status(201).send(record);
+} catch (error){
+    console.log(error.message);
+    response.status(500).send({ message: error.message});
+}
 
 
-
-});  
+});
 
 
 // Route for getting all record

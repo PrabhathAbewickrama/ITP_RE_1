@@ -8,7 +8,7 @@ import {MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md';
 
 
 
-const home = () => {
+const THome = () => {
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -29,7 +29,7 @@ const home = () => {
     <div className='p-4'>
       <div className='flex justify-between items-center'>
         <h1 className='text-2xl font-bold'>Pet Records</h1>
-        <Link to='/record/create'>
+        <Link to='./create'>
           <MdOutlineAddBox className='text-sky-800 text-4xl'/>
           </Link>
         </div>
@@ -37,11 +37,12 @@ const home = () => {
           <table className='w-full border-separate border-spacing-2'>
             <thead>
               <tr>
+               <th className='border border-slate-600 rounded-md'>No</th>
                 <th className='border border-slate-600 rounded-md'>ID</th>
-                <th className='border border-slate-600 rounded-md max-md:hidden'>Vet Name</th>
+                <th className='border border-slate-600 rounded-md '>Vet Name</th>
                 <th className='border border-slate-600 rounded-md'>Treatment</th>
-                <th className='border border-slate-600 rounded-md'>Date</th>
-                <th className='border border-slate-600 rounded-md'>Actions</th>
+                <th className='border border-slate-600 rounded-md '>Date</th>
+                <th className='border border-slate-600 rounded-md'>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -64,13 +65,13 @@ const home = () => {
                     </td>
                   <td className='border border-slate-700 rounded-md text-center'>
                     <div className='flex justify-center gap-x-4'>
-                    <Link to={`/record/${record._id}`} className='text-blue-500 hover:underline'>
+                    <Link to={`/show/${record._id}`} className='text-blue-500 hover:underline'>
                       <BsInfoCircle />
                     </Link>
-                    <Link to={`/record/edit/${record._id}`} className='text-green-500 hover:underline'>
+                    <Link to={`/edit/${record._id}`} className='text-green-500 hover:underline'>
                       <AiOutlineEdit />
                     </Link>
-                    <Link to={`/record/delete/${record._id}`} className='text-red-500 hover:underline'>
+                    <Link to={`/delete/${record._id}`} className='text-red-500 hover:underline'>
                       <MdOutlineDelete />
                     </Link>
                     </div>
@@ -84,6 +85,6 @@ const home = () => {
         )}
         </div>
   );
-} 
+} ;
 
-export default home;
+export default THome;

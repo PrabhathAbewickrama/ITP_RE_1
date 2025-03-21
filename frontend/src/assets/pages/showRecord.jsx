@@ -1,9 +1,9 @@
 import React from 'react'
 
-function showRecord() {
+const showRecord = () => {
   return (
     <div>showRecord</div>
   )
 }
 
-export default showRecord
+export default showRecord;

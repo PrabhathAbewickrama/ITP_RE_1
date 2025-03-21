@@ -27,27 +27,33 @@ export default function App() {
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./assets/pages/home";
+import Home from "./assets/pages/THome";
 import DeleteRecord from "./assets/pages/deleteRecords";
 import CreateRecord from "./assets/pages/createRecord";
 import EditRecord from "./assets/pages/editRecords";
 import ShowRecord from "./assets/pages/showRecord";
+//import Header from "./assets/components/Header";
+
 
 
 
 const App = () => {
   return (
     <Routes>
+    
       <Route path="/" element={<Home />} />
       <Route path="/create" element={<CreateRecord />} />
       <Route path="/edit/:id" element={<EditRecord />} />
       
       <Route path="/delete/:id" element={<DeleteRecord />} />
-      <Route path="/show" element={<ShowRecord />} />
+      <Route path="/show/:id" element={<ShowRecord />} />
 
     </Routes>
   );
 }
 
 export default App;
+
+
+
 
