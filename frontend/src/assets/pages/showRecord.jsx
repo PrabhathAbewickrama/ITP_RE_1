@@ -49,7 +49,7 @@ const ShowRecords = () => {
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Date</span>
-            <span>{Record.Date}</span>
+            <span>{new Date(Record.date).toLocaleDateString()}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Create at</span>
