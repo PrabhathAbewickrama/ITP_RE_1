@@ -51,14 +51,8 @@ const ShowRecords = () => {
             <span className='text-xl mr-4 text-gray-500'>Date</span>
             <span>{new Date(Record.date).toLocaleDateString()}</span>
           </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Create at</span>
-            <span>{new Date(Record.createdAt).toString()}</span>
-          </div>
-          <div className='my-4'>
-            <span className='text-xl mr-4 text-gray-500'>Last Update Time</span>
-            <span>{new Date(Record.updatedAt).toString()}</span>
-          </div>
+          
+        
         </div>
       )}
     </div>

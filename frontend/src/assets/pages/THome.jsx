@@ -68,12 +68,14 @@ const THome = () => {
                     <Link to={`/show/${record._id}`} className='text-blue-500 hover:underline'>
                       <BsInfoCircle />
                     </Link>
+                   
                     <Link to={`/edit/${record._id}`} className='text-green-500 hover:underline'>
                       <AiOutlineEdit />
                     </Link>
                     <Link to={`/delete/${record._id}`} className='text-red-500 hover:underline'>
                       <MdOutlineDelete />
                     </Link>
+                    
                     </div>
                   </td>
                 </tr>
@@ -86,5 +88,6 @@ const THome = () => {
         </div>
   );
 } ;
+
 
 export default THome;
