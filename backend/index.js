@@ -20,7 +20,10 @@ app.use(cors(corsOptions));
 
 
   app.use('/record',recordRoute);
-
+//s
+  app.use('/user', userRoutes);
+app.use('/api/pets', petRoutes);
+//s
 
 mongoose.connect(process.env.MONGO)
 .then(() => {
