@@ -11,7 +11,7 @@ router.get('/', test);
 export default router;
 */
 import express from "express";
-import User from "../models/UserModel.js";
+import User from "../models/user.model.js";
 
 const router = express.Router();
 

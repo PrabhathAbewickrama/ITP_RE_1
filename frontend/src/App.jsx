@@ -15,7 +15,7 @@ import Profile from "./assets/pages/User/UserProfile";
 import UpdatePet from "./assets/pages/User/PetUpdate";
 import VeterinarianRegistration from "./assets/pages/Admin/vetRegister";
 import VeterinarianDashboard from "./assets/pages/User/vetDashboard";
-
+import VetProfile from "./assets/pages/User/vetProfile";
 const App = () => {
   return (
     <Routes>

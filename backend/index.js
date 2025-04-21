@@ -6,7 +6,10 @@ import mongoose from 'mongoose';
 import recordRoute from './routes/recordRoute.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
+//
+import userRoutes from './routes/UserRoute.js';     // ✅ Import userRoutes
+import petRoutes from './routes/petRoutes.js';  
+//
 dotenv.config();
 
 const app = express();
