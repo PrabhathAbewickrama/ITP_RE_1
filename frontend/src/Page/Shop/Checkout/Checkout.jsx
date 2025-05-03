@@ -215,115 +215,163 @@ function Checkout() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
             {/* Shipping Step */}
-            <CheckoutStep
-              title="Shipping"
-              isActive={step === 1}
-              isCompleted={step > 1}
-            >
-              <form onSubmit={handleSubmit}>
-                <Input
-                  label="Full Name"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  placeholder="John Doe"
-                />
-                <Input
-                  label="Email"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="john@example.com"
-                />
-                <Input
-                  label="Address"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleInputChange}
-                  placeholder="123 Main St"
-                />
-                <div className="grid grid-cols-2 gap-4">
-                  <Input
-                    label="City"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    placeholder="New York"
-                  />
-                  <Input
-                    label="ZIP Code"
-                    name="zipCode"
-                    value={formData.zipCode}
-                    onChange={handleInputChange}
-                    placeholder="10001"
-                  />
-                </div>
-                <motion.button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-cyan-600 to-purple-600 text-white py-3 px-6 rounded-xl font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 relative overflow-hidden group"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="relative z-10">Continue to Payment</span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-400"
-                    initial={{ x: "100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
-              </form>
-            </CheckoutStep>
+                  <CheckoutStep
+                    title="Shipping"
+                    isActive={step === 1}
+                    isCompleted={step > 1}
+                  >
+                    <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const nameRegex = /^[A-Za-z\s]+$/;
+                      const emailRegex = /^[^\s@]+@gmail\.com$/;
+                      const zipCodeRegex = /^\d+$/;
 
-            {/* Payment Step */}
-            <CheckoutStep
-              title="Payment"
-              isActive={step === 2}
-              isCompleted={step > 2}
-            >
-              <form onSubmit={handleSubmit}>
-                <Input
-                  label="Card Number"
-                  name="cardNumber"
-                  value={formData.cardNumber}
-                  onChange={handleInputChange}
-                  placeholder="1234 5678 9012 3456"
-                />
-                <div className="grid grid-cols-2 gap-4">
-                  <Input
-                    label="Expiry Date"
-                    name="expiryDate"
-                    value={formData.expiryDate}
-                    onChange={handleInputChange}
-                    placeholder="MM/YY"
-                  />
-                  <Input
-                    label="CVV"
-                    name="cvv"
-                    value={formData.cvv}
-                    onChange={handleInputChange}
-                    placeholder="123"
-                  />
-                </div>
-                <motion.button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-cyan-600 to-purple-600 text-white py-3 px-6 rounded-xl font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 relative overflow-hidden group"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="relative z-10">Review Order</span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-400"
-                    initial={{ x: "100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
-              </form>
-            </CheckoutStep>
+                      if (!nameRegex.test(formData.fullName)) {
+                      toast.error("Full Name should only contain letters and spaces.");
+                      return;
+                      }
 
-            {/* Review Step */}
+                      if (!emailRegex.test(formData.email)) {
+                      toast.error("Email must be a valid Gmail address without spaces.");
+                      return;
+                      }
+
+                      if (!zipCodeRegex.test(formData.zipCode)) {
+                      toast.error("ZIP Code should only contain numbers without spaces.");
+                      return;
+                      }
+
+                      handleSubmit(e);
+                    }}
+                    >
+                    <Input
+                      label="Full Name"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      placeholder="John Doe"
+                    />
+                    <Input
+                      label="Email"
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="john@example.com"
+                    />
+                    <Input
+                      label="Address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      placeholder="123 Main St"
+                    />
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                      label="City"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      placeholder="New York"
+                      />
+                      <Input
+                      label="ZIP Code"
+                      name="zipCode"
+                      value={formData.zipCode}
+                      onChange={handleInputChange}
+                      placeholder="10001"
+                      />
+                    </div>
+                    <motion.button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-cyan-600 to-purple-600 text-white py-3 px-6 rounded-xl font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 relative overflow-hidden group"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className="relative z-10">Continue to Payment</span>
+                      <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-400"
+                      initial={{ x: "100%" }}
+                      whileHover={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                      />
+                    </motion.button>
+                    </form>
+                  </CheckoutStep>
+
+                  {/* Payment Step */}
+                        <CheckoutStep
+                          title="Payment"
+                          isActive={step === 2}
+                          isCompleted={step > 2}
+                        >
+                          <form
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            const cardNumberRegex = /^\d{16}$/;
+                            const expiryDateRegex = /^\d{2}\/\d{2}$/;
+                            const cvvRegex = /^\d{3}$/;
+
+                            if (!cardNumberRegex.test(formData.cardNumber)) {
+                            toast.error("Card Number must be exactly 16 digits.");
+                            return;
+                            }
+
+                            if (!expiryDateRegex.test(formData.expiryDate)) {
+                            toast.error("Expiry Date must be in MM/YY format.");
+                            return;
+                            }
+
+                            if (!cvvRegex.test(formData.cvv)) {
+                            toast.error("CVV must be exactly 3 digits.");
+                            return;
+                            }
+
+                            handleSubmit(e);
+                          }}
+                          >
+                          <Input
+                            label="Card Number"
+                            name="cardNumber"
+                            value={formData.cardNumber}
+                            onChange={handleInputChange}
+                            placeholder="1234 5678 9012 3456"
+                          />
+                          <div className="grid grid-cols-2 gap-4">
+                            <Input
+                            label="Expiry Date"
+                            name="expiryDate"
+                            value={formData.expiryDate}
+                            onChange={handleInputChange}
+                            placeholder="MM/YY"
+                            />
+                            <Input
+                            label="CVV"
+                            name="cvv"
+                            value={formData.cvv}
+                            onChange={handleInputChange}
+                            placeholder="123"
+                            />
+                          </div>
+                          <motion.button
+                            type="submit"
+                            className="w-full bg-gradient-to-r from-cyan-600 to-purple-600 text-white py-3 px-6 rounded-xl font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 relative overflow-hidden group"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <span className="relative z-10">Review Order</span>
+                            <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-400"
+                            initial={{ x: "100%" }}
+                            whileHover={{ x: 0 }}
+                            transition={{ duration: 0.3 }}
+                            />
+                          </motion.button>
+                          </form>
+                        </CheckoutStep>
+
+                        {/* Review Step */}
             <CheckoutStep
               title="Review"
               isActive={step === 3}

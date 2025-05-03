@@ -28,13 +28,7 @@ const AdminHeader = () => {
 
       {/* Right: Actions (Notifications, Profile, Logout) */}
       <div className="flex items-center space-x-6">
-        {/* Notification Bell */}
-        <button className="relative">
-          <FaBell className="text-gray-600 text-xl hover:text-blue-600" />
-          <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">
-            3
-          </span>
-        </button>
+        
 
         {/* User Profile */}
         <div className="flex items-center space-x-2">

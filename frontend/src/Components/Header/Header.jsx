@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo_1.png";
+import logo from "../../assets/logo_3.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,

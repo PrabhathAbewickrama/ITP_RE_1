@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axiosInstance from "../../../../utils/axios"; // Adjust the path to your axiosInstance file
 import { Link } from "react-router-dom";
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable';
 
 // Status badge component to display product status (In Stock, Low Stock, Out of Stock)
 function StatusBadge({ status }) {
@@ -373,6 +375,61 @@ function ProductList() {
     }
   };
 
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    
+    // Add title
+    doc.setFontSize(18);
+    doc.text("Product List", 14, 20);
+    
+    // Define table columns
+    const columns = [
+      { header: "Product", dataKey: "name" },
+      { header: "Category", dataKey: "category" },
+      { header: "SKU", dataKey: "sku" },
+      { header: "Price", dataKey: "price" },
+      { header: "Stock", dataKey: "stock" },
+      { header: "Status", dataKey: "status" },
+      { header: "Sales", dataKey: "sales" },
+      { header: "Rating", dataKey: "rating" },
+    ];
+
+    // Prepare table data
+    const data = products.map(product => ({
+      name: product.name,
+      category: product.category,
+      sku: product.sku,
+      price: `$${product.price.toFixed(2)}`,
+      stock: product.stock,
+      status: product.status,
+      sales: product.sales,
+      rating: product.rating.toFixed(1)
+    }));
+
+    // Generate table using autoTable
+    autoTable(doc, {
+      startY: 30,
+      columns: columns,
+      body: data,
+      theme: 'striped',
+      headStyles: { fillColor: [66, 139, 202] },
+      styles: { fontSize: 8 },
+      columnStyles: {
+        name: { cellWidth: 40 },
+        category: { cellWidth: 30 },
+        sku: { cellWidth: 20 },
+        price: { cellWidth: 20 },
+        stock: { cellWidth: 15 },
+        status: { cellWidth: 20 },
+        sales: { cellWidth: 15 },
+        rating: { cellWidth: 15 },
+      }
+    });
+
+    // Save the PDF
+    doc.save("products-list.pdf");
+  };
+
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name
       .toLowerCase()
@@ -400,34 +457,65 @@ function ProductList() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900">Products</h1>
-          <motion.button
-            className="bg-blue-600 text-white px-6 py-2 rounded-xl font-medium hover:bg-blue-700 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 relative overflow-hidden group"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                />
-              </svg>
-              Add Product
-            </span>
-            <motion.div
-              className="absolute inset-0 bg-blue-500"
-              initial={{ x: "100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.button>
+          <div className="flex gap-4">
+            <motion.button
+              onClick={generatePDF}
+              className="bg-green-600 text-white px-6 py-2 rounded-xl font-medium hover:bg-green-700 shadow-lg shadow-green-500/20 hover:shadow-green-500/30 relative overflow-hidden group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 0115.9 6M15.9 6a5 5 0 01.88 7.903m-8.78 3.097V21m8.78-4.903V21"
+                  />
+                </svg>
+                Download Products
+              </span>
+              <motion.div
+                className="absolute inset-0 bg-green-500"
+                initial={{ x: "100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.button>
+            <motion.button
+              className="bg-blue-600 text-white px-6 py-2 rounded-xl font-medium hover:bg-blue-700 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 relative overflow-hidden group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+                Add Product
+              </span>
+              <motion.div
+                className="absolute inset-0 bg-blue-500"
+                initial={{ x: "100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.button>
+          </div>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">

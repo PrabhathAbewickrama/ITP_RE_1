@@ -128,6 +128,11 @@ const CreateProduct = () => {
               onChange={handleInputChange}
               className="border-gray-300 border rounded-md w-full p-3 mt-2 focus:ring-blue-500 focus:border-blue-500 shadow-md"
             />
+            {!/^[A-Za-z\s]+$/.test(product.name) && product.name && (
+              <p className="text-red-500 text-sm mt-1">
+                Product Name should contain only letters and spaces.
+              </p>
+            )}
           </div>
 
           <div>
@@ -190,6 +195,11 @@ const CreateProduct = () => {
               onChange={handleInputChange}
               className="border-gray-300 border rounded-md w-full p-3 mt-2 focus:ring-blue-500 focus:border-blue-500 shadow-md"
             />
+            {!/^[A-Za-z\s]+$/.test(product.color) && product.color && (
+              <p className="text-red-500 text-sm mt-1">
+                Color should contain only letters and spaces.
+              </p>
+            )}
           </div>
 
           <div>
@@ -201,6 +211,12 @@ const CreateProduct = () => {
               onChange={handleInputChange}
               className="border-gray-300 border rounded-md w-full p-3 mt-2 focus:ring-blue-500 focus:border-blue-500 shadow-md"
             />
+            {(!/^\d+(\.\d+)?$/.test(product.price) || product.price <= 0) &&
+              product.price && (
+                <p className="text-red-500 text-sm mt-1">
+                  Price should be a positive number.
+                </p>
+              )}
           </div>
         </div>
 
@@ -217,6 +233,13 @@ const CreateProduct = () => {
               onChange={handleInputChange}
               className="border-gray-300 border rounded-md w-full p-3 mt-2 focus:ring-blue-500 focus:border-blue-500 shadow-md"
             />
+            {(!/^\d+(\.\d+)?$/.test(product.regularPrice) ||
+              product.regularPrice <= 0) &&
+              product.regularPrice && (
+                <p className="text-red-500 text-sm mt-1">
+                  Regular Price should be a positive number.
+                </p>
+              )}
           </div>
 
           <div>
@@ -228,6 +251,12 @@ const CreateProduct = () => {
               onChange={handleInputChange}
               className="border-gray-300 border rounded-md w-full p-3 mt-2 focus:ring-blue-500 focus:border-blue-500 shadow-md"
             />
+            {(!/^\d+$/.test(product.quantity) || product.quantity <= 0) &&
+              product.quantity && (
+                <p className="text-red-500 text-sm mt-1">
+                  Quantity should be a positive integer greater than 0.
+                </p>
+              )}
           </div>
         </div>
 

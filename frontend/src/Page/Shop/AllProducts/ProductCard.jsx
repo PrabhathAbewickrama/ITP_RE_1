@@ -284,6 +284,7 @@ function ProductCard({
                 className="flex-1 bg-purple-600 text-white py-3 px-4 rounded-xl font-medium"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => window.location.href = '/checkout'}
               >
                 Buy Now
               </motion.button>
